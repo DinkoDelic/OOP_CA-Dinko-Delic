@@ -1,0 +1,13 @@
+C:\Users\Dinko\OOP_CA-Dinko Delic\bin\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.exe
+C:\Users\Dinko\OOP_CA-Dinko Delic\bin\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.deps.json
+C:\Users\Dinko\OOP_CA-Dinko Delic\bin\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.runtimeconfig.json
+C:\Users\Dinko\OOP_CA-Dinko Delic\bin\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.runtimeconfig.dev.json
+C:\Users\Dinko\OOP_CA-Dinko Delic\bin\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.dll
+C:\Users\Dinko\OOP_CA-Dinko Delic\bin\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.pdb
+C:\Users\Dinko\OOP_CA-Dinko Delic\obj\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.csprojAssemblyReference.cache
+C:\Users\Dinko\OOP_CA-Dinko Delic\obj\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.AssemblyInfoInputs.cache
+C:\Users\Dinko\OOP_CA-Dinko Delic\obj\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.AssemblyInfo.cs
+C:\Users\Dinko\OOP_CA-Dinko Delic\obj\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.csproj.CoreCompileInputs.cache
+C:\Users\Dinko\OOP_CA-Dinko Delic\obj\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.dll
+C:\Users\Dinko\OOP_CA-Dinko Delic\obj\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.pdb
+C:\Users\Dinko\OOP_CA-Dinko Delic\obj\Debug\netcoreapp3.1\OOP_CA-Dinko Delic.genruntimeconfig.cache
