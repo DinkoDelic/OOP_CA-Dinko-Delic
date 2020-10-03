@@ -36,7 +36,7 @@ namespace OOP_CA_Dinko_Delic
             Salary = salary;
         }
 
-
+        // Formatting to display the information into columns and rows
         public override string ToString()
         {
             return string.Format("{0,-20} {1,-15}{2,-15}{3,-15}{4,-10}\n{5,-20} {6,-15}{7,-15}{8,-15}{9,-10}", 
