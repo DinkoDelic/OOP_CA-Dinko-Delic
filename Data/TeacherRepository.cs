@@ -13,6 +13,8 @@ namespace OOP_CA_Dinko_Delic
 
         public void CreateTeacher(Teacher teacher)
         {
+            Console.Clear();
+
             Console.WriteLine("Please input teacher's name:");
             teacher.Name = Console.ReadLine();
 
@@ -33,9 +35,19 @@ namespace OOP_CA_Dinko_Delic
             }
             teacher.Salary = result;
 
-            _data.AddTeacher(teacher);
+            Console.WriteLine("\n" + teacher + "\n" + "\nPress y to confirm adding a teacher, press any other key to chancel");
+            string conformation = Console.ReadLine();
 
-            Console.WriteLine("\n" + teacher + "\n");
+            if (conformation == "y")
+            {
+                _data.AddTeacher(teacher);
+                Console.WriteLine("\nTeacher added succesfully\n");
+            }
+            else
+            {
+                Console.WriteLine("\nTeacher was not added.\n");
+            }
+
         }
 
         public void DeleteTeacher()
@@ -50,16 +62,16 @@ namespace OOP_CA_Dinko_Delic
 
                 if (_data.RemoveTeacher(delete))
                 {
-                    Console.WriteLine("Teacher deleted succesfully");
+                    Console.WriteLine("\nTeacher deleted succesfully\n");
                 }
                 else
                 {
-                    Console.WriteLine("Deletion failed");
+                    Console.WriteLine("\nDeletion failed\n");
                 }
             }
             else
             {
-                Console.WriteLine("Exiting operation.");
+                Console.WriteLine("\nExiting operation.\n");
             }
 
         }
