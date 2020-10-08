@@ -21,8 +21,5 @@ namespace OOP_CA_Dinko_Delic
             _data.AddTeacher(teacherTwo);
         }
 
-
-
-
     }
 }

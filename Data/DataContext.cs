@@ -18,7 +18,7 @@ namespace OOP_CA_Dinko_Delic
             teacherList.Add(teacher);
         }
         
-        // Returns boolean value indicating if the operation was succesfull or not
+        // Returns boolean value indicating if the operation was succesful or not
          public bool RemoveStudent(Student student)
         {
             return studentList.Remove(student);

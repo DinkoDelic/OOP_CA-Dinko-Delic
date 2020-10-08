@@ -6,10 +6,10 @@ namespace OOP_CA_Dinko_Delic
     public static class UserInterface
     {
         // Static method for displaying user interface inside the terminal
-        public static void DisplayMenu(TeacherRepository teacherRepo, StudentRepository studentRepo) 
+        public static void DisplayMenu(TeacherRepository teacherRepo, StudentRepository studentRepo)
         {
-             Console.WriteLine("\n********** WELCOME TO DBS PERSONNEL MANAGEMENT SYSTEM **********\n" +
-                              "\nPlease input a number for the action you wish to perform from the list bellow:\n");
+            Console.WriteLine("\n********** WELCOME TO DBS PERSONNEL MANAGEMENT SYSTEM **********\n" +
+                             "\nPlease input a number for the action you wish to perform from the list bellow:\n");
 
             int input;
 
@@ -36,8 +36,7 @@ namespace OOP_CA_Dinko_Delic
                         break;
 
                     case 3:
-                        Teacher newTeacher = new Teacher();
-                        teacherRepo.CreateTeacher(newTeacher);
+                        teacherRepo.CreateTeacher();
                         break;
 
                     case 4:
@@ -45,8 +44,7 @@ namespace OOP_CA_Dinko_Delic
                         break;
 
                     case 5:
-                        Student newStudent = new Student();
-                        studentRepo.CreateStudent(newStudent);
+                        studentRepo.CreateStudent();
                         break;
 
                     case 6:

@@ -12,7 +12,7 @@ namespace OOP_CA_Dinko_Delic.Helpers
         }
         public static bool CheckPhone(string phone)
         {
-            return Regex.IsMatch(phone, @"^(?:\(?)(\d{ 3})(?:[\).\s]?)(\d{ 3})(?:[-\.\s] ?)(\d{ 4})(? !\d)");
+            return Regex.IsMatch(phone, @"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$");
         }
        
     }

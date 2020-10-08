@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using OOP_CA_Dinko_Delic.Data;
+﻿using OOP_CA_Dinko_Delic.Data;
 
 namespace OOP_CA_Dinko_Delic
 {
@@ -15,7 +13,7 @@ namespace OOP_CA_Dinko_Delic
             // Seeds intial data into the lists for testing
             SeedData.CreateSeed(data);
 
-            // Repositories containg methods for displaying, adding, and removing teacher and students
+            // Repositories containing methods for displaying, adding, and removing teachers and students
             TeacherRepository teacherRepo = new TeacherRepository(data);
             StudentRepository studentRepo = new StudentRepository(data);
 

@@ -13,10 +13,12 @@ namespace OOP_CA_Dinko_Delic.Data
             _data = data;
         }
 
-        // Void method that mimics a form to create a student with series of validations for different columns
-        public void CreateStudent(Student student)
+        // Void method that mimics a gui form to create a student with series of validations for different columns
+        public void CreateStudent()
         {
             Console.Clear();
+
+            Student student = new Student();
 
             Console.WriteLine("Please input student's name:");
             student.Name = Console.ReadLine();
@@ -57,7 +59,7 @@ namespace OOP_CA_Dinko_Delic.Data
             string status = Console.ReadLine();
 
             // Check if the input is one of two enum options
-            while (status != "postgrad" && status != "undergrad")
+            while (status.ToLower() != "postgrad" && status.ToLower() != "undergrad")
             {
                 Console.WriteLine("Please input student's status either as postgrad or undergrad");
                 status = Console.ReadLine();
@@ -75,7 +77,7 @@ namespace OOP_CA_Dinko_Delic.Data
             Console.WriteLine("\n" + student + "\n" + "\nPress y to confirm adding a student, press any other key to cancel");
             string conformation = Console.ReadLine();
 
-            if (conformation == "y")
+            if (conformation.ToLower() == "y")
             {
                 _data.AddStudent(student);
                 Console.WriteLine("\nStudent added succesfully\n");
@@ -87,15 +89,15 @@ namespace OOP_CA_Dinko_Delic.Data
         }
         public void DeleteStudent()
         {
-            
+
             Console.WriteLine("Please type in the full name of the student you wish to delete or type -1 to exit:");
             string name = Console.ReadLine();
 
             if (name != "-1")
             {
                 // Using linq to find the same user name
-                Student delete = _data.studentList.FirstOrDefault(s => s.Name == name);
-                
+                Student delete = _data.studentList.FirstOrDefault(s => s.Name.ToLower() == name.ToLower());
+
                 // Returns boolean value indicating success or failure
                 if (_data.RemoveStudent(delete))
                 {
@@ -115,10 +117,39 @@ namespace OOP_CA_Dinko_Delic.Data
 
         public void DisplayStudents()
         {
-            // Loops through all the items in the list and calling .toString() implicitly to display it on screen
-            foreach (Student s in _data.studentList)
+            // Loops through all the items in the list and calls .toString() implicitly to display it on screen
+            Console.WriteLine("\n1 - List alphabetically\n2 - List by id\n3 - List by status");
+            int value;
+            while (!(Int32.TryParse(Console.ReadLine(), out value)) || (value < 1 || value > 3))
             {
-                Console.WriteLine(s + "\n");
+                Console.WriteLine("Please select from the listed options");
+            }
+
+            switch (value)
+            {
+                case 1:
+                    var studentsName = _data.studentList.OrderBy(s => s.Name).ToList();
+                    foreach (Student s in studentsName)
+                    {
+                        Console.WriteLine(s + "\n");
+                    }
+                    break;
+                case 2:
+                    var studentId = _data.studentList.OrderBy(s => s.StudentId).ToList();
+                    foreach (Student s in studentId)
+                    {
+                        Console.WriteLine(s + "\n");
+                    }
+                    break;
+                case 3:
+                    var studentStatus = _data.studentList.OrderBy(s => s.Status).ToList();
+                    foreach (Student s in studentStatus)
+                    {
+                        Console.WriteLine(s + "\n");
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
