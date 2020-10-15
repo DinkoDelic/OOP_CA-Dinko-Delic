@@ -1,36 +1,25 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using OOP_CA_Dinko_Delic.Helpers;
+using OOP_CA_Dinko_Delic.Interface;
 
 namespace OOP_CA_Dinko_Delic.Data
 {
-    public class StudentRepository
+    public class StudentRepository : UserRepository<Student>
     {
-        // Get only instance of our DataContext
-        public DataContext _data { get; }
-        public StudentRepository(DataContext data)
+      
+        public StudentRepository(DataContext data):base(data)
         {
-            _data = data;
         }
 
         // Void method that mimics a gui form to create a student with series of validations for different columns
-        public void CreateStudent()
+        public override Student Create(Student student)
         {
             Console.Clear();
 
-            Student student = new Student();
-
             Console.WriteLine("Please input student's name:");
             student.Name = Console.ReadLine();
-
-            Console.WriteLine("Please input student's id:");
-            int result;
-
-            while (!int.TryParse(Console.ReadLine(), out result))
-            {
-                Console.WriteLine("Please input the id as a number:");
-            }
-            student.StudentId = result;
 
             Console.WriteLine("Please input student's phone number:");
             string phoneNumber = Console.ReadLine();
@@ -55,16 +44,16 @@ namespace OOP_CA_Dinko_Delic.Data
             student.Email = email;
 
 
-            Console.WriteLine("Please input student's status either as postgrad or undergrad");
+            Console.WriteLine("Please input student's status:\n 1 -postgrad    2 -undergrad");
             string status = Console.ReadLine();
 
             // Check if the input is one of two enum options
-            while (status.ToLower() != "postgrad" && status.ToLower() != "undergrad")
+            while (status.ToLower() != "1" && status.ToLower() != "2")
             {
-                Console.WriteLine("Please input student's status either as postgrad or undergrad");
+                Console.WriteLine("Please input student's status:\n 1 -postgrad    2 -undergrad");
                 status = Console.ReadLine();
             }
-            if (status == "postgrad")
+            if (status == "1")
             {
                 student.Status = StudentStatusEnum.Postgrad;
             }
@@ -73,76 +62,55 @@ namespace OOP_CA_Dinko_Delic.Data
                 student.Status = StudentStatusEnum.Undergrad;
             }
 
-            // Review the student input and confirm adding it or discard the entry
-            Console.WriteLine("\n" + student + "\n" + "\nPress y to confirm adding a student, press any other key to cancel");
-            string conformation = Console.ReadLine();
-
-            if (conformation.ToLower() == "y")
-            {
-                _data.AddStudent(student);
-                Console.WriteLine("\nStudent added succesfully\n");
-            }
-            else
-            {
-                Console.WriteLine("\nStudent was not added.\n");
-            }
-        }
-        public void DeleteStudent()
-        {
-
-            Console.WriteLine("Please type in the full name of the student you wish to delete or type -1 to exit:");
-            string name = Console.ReadLine();
-
-            if (name != "-1")
-            {
-                // Using linq to find the same user name
-                Student delete = _data.studentList.FirstOrDefault(s => s.Name.ToLower() == name.ToLower());
-
-                // Returns boolean value indicating success or failure
-                if (_data.RemoveStudent(delete))
-                {
-                    Console.WriteLine("\nStudent deleted succesfully\n");
-                }
-                else
-                {
-                    Console.WriteLine("\nDeletion failed\n");
-                }
-            }
-            else
-            {
-                Console.WriteLine("\nExiting operation.\n");
-            }
-
+            return student;
         }
 
-        public void DisplayStudents()
+
+        // Adds all the Student types from our Person list into a temp Student list to allow for sorting and filtering
+        public override void DisplayType(List<Student> studentList)
         {
-            // Loops through all the items in the list and calls .toString() implicitly to display it on screen
+            
             Console.WriteLine("\n1 - List alphabetically\n2 - List by id\n3 - List by status");
-            int value;
-            while (!(Int32.TryParse(Console.ReadLine(), out value)) || (value < 1 || value > 3))
+            int option;
+            while (!(Int32.TryParse(Console.ReadLine(), out option)) || (option < 1 || option > 3))
             {
                 Console.WriteLine("Please select from the listed options");
             }
 
-            switch (value)
+            foreach (Person user in _data.userList)
+            {
+                // Checking if user is of type Student
+                if (user is Student)
+                {
+                    // Downcasting from Person to Student with "as" keyword
+                    Student s = user as Student;
+                    // Assigning them to a temp list for sorting functionality 
+                    studentList.Add(s);
+                }
+            }
+
+            switch (option)
             {
                 case 1:
-                    var studentsName = _data.studentList.OrderBy(s => s.Name).ToList();
+                    // Sort by name
+                    var studentsName = studentList.OrderBy(s => s.Name);
+                    // Loops through all the items in the list and calls .toString() implicitly to display it on screen
                     foreach (Student s in studentsName)
                     {
                         Console.WriteLine(s + "\n");
                     }
                     break;
                 case 2:
-                    var studentId = _data.studentList.OrderBy(s => s.StudentId).ToList();
+                    // Sort by id
+                    var studentId = studentList.OrderBy(s => s.PublicId);
                     foreach (Student s in studentId)
                     {
                         Console.WriteLine(s + "\n");
                     }
                     break;
                 case 3:
-                    var studentStatus = _data.studentList.OrderBy(s => s.Status).ToList();
+                    // Sort by student status
+                    var studentStatus = studentList.OrderBy(s => s.Status);
                     foreach (Student s in studentStatus)
                     {
                         Console.WriteLine(s + "\n");
@@ -151,6 +119,11 @@ namespace OOP_CA_Dinko_Delic.Data
                 default:
                     break;
             }
+        }
+
+        public override Student EditUser(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

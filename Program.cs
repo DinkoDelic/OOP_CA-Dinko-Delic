@@ -13,12 +13,9 @@ namespace OOP_CA_Dinko_Delic
             // Seeds intial data into the lists for testing
             SeedData.CreateSeed(data);
 
+            // Static method that contains user interface menu, take in two parameters:
             // Repositories containing methods for displaying, adding, and removing teachers and students
-            TeacherRepository teacherRepo = new TeacherRepository(data);
-            StudentRepository studentRepo = new StudentRepository(data);
-
-            // Static class that contains user interface menu
-            UserInterface.DisplayMenu(teacherRepo, studentRepo);
+            Menu.DisplayMenu(new TeacherRepository(data), new StudentRepository(data));
 
         }
     }

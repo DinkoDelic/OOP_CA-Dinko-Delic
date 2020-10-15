@@ -4,28 +4,20 @@ namespace OOP_CA_Dinko_Delic
 {
     public class DataContext
     {
-        // Data class storing our two lists, and methods to update them
-        public List<Teacher> teacherList = new List<Teacher>();
+        // Data class storing our list, and methods to update it
+        public List<Person> userList = new List<Person>();
 
-        public List<Student> studentList = new List<Student>();
-
-        public void AddStudent(Student student)
+        public void AddPerson(Person user)
         {
-            studentList.Add(student);
-        }
-         public void AddTeacher(Teacher teacher)
-        {
-            teacherList.Add(teacher);
+            userList.Add(user);
         }
         
         // Returns boolean value indicating if the operation was succesful or not
-         public bool RemoveStudent(Student student)
+        public bool RemoveUser(Person user)
         {
-            return studentList.Remove(student);
+            return userList.Remove(user);
         }
-         public bool RemoveTeacher(Teacher teacher)
-        {
-           return teacherList.Remove(teacher);
-        }
+
+        
     }
 }
