@@ -2,12 +2,11 @@ using System.Globalization;
 
 namespace OOP_CA_Dinko_Delic
 {
-    public abstract class Person
+    public class Person
     {
         // Culture Info object that let's us set language pack for our strings, 
         // used to capitalize first and last name in Name property
         TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
-
 
         private string name;
         public string Name

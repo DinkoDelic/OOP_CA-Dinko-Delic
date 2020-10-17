@@ -7,7 +7,7 @@ namespace OOP_CA_Dinko_Delic
         // Data class storing our list, and methods to update it
         public List<Person> userList = new List<Person>();
 
-        public void AddPerson(Person user)
+        public void AddUser(Person user)
         {
             userList.Add(user);
         }

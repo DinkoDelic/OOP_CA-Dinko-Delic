@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using OOP_CA_Dinko_Delic.Helpers;
-using OOP_CA_Dinko_Delic.Interface;
 
 namespace OOP_CA_Dinko_Delic.Data
 {
@@ -16,33 +14,9 @@ namespace OOP_CA_Dinko_Delic.Data
         // Void method that mimics a gui form to create a student with series of validations for different columns
         public override Student Create(Student student)
         {
-            Console.Clear();
-
-            Console.WriteLine("Please input student's name:");
-            student.Name = Console.ReadLine();
-
-            Console.WriteLine("Please input student's phone number:");
-            string phoneNumber = Console.ReadLine();
-
-            // Using regular expressions to check for valid phone numbers
-            while (!RegEx.CheckPhone(phoneNumber))
-            {
-                Console.WriteLine("Phone number is invalid, please input correct phone number:");
-                phoneNumber = Console.ReadLine();
-            }
-            student.Phone = phoneNumber;
-
-            Console.WriteLine("Please input student's email:");
-            string email = Console.ReadLine();
-
-            // Using regular expressions to check for valid emails
-            while (!RegEx.CheckEmail(email))
-            {
-                Console.WriteLine("Email syntax is invalid, please input correct email:");
-                email = Console.ReadLine();
-            }
-            student.Email = email;
-
+            // Base method to assign name, email and phone
+            // Because it takes in person parameter we have to preform downcasting
+            student = AssignPersonProperties(student) as Student;
 
             Console.WriteLine("Please input student's status:\n 1 -postgrad    2 -undergrad");
             string status = Console.ReadLine();
@@ -69,14 +43,6 @@ namespace OOP_CA_Dinko_Delic.Data
         // Adds all the Student types from our Person list into a temp Student list to allow for sorting and filtering
         public override void DisplayType(List<Student> studentList)
         {
-            
-            Console.WriteLine("\n1 - List alphabetically\n2 - List by id\n3 - List by status");
-            int option;
-            while (!(Int32.TryParse(Console.ReadLine(), out option)) || (option < 1 || option > 3))
-            {
-                Console.WriteLine("Please select from the listed options");
-            }
-
             foreach (Person user in _data.userList)
             {
                 // Checking if user is of type Student
@@ -87,6 +53,13 @@ namespace OOP_CA_Dinko_Delic.Data
                     // Assigning them to a temp list for sorting functionality 
                     studentList.Add(s);
                 }
+            }
+            
+            Console.WriteLine("\n1 - List alphabetically\n2 - List by id\n3 - List by status");
+            int option;
+            while (!(Int32.TryParse(Console.ReadLine(), out option)) || (option < 1 || option > 3))
+            {
+                Console.WriteLine("Please select from the listed options");
             }
 
             switch (option)

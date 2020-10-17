@@ -1,8 +1,8 @@
-﻿using OOP_CA_Dinko_Delic.Interface;
+﻿using OOP_CA_Dinko_Delic.Helpers;
+using OOP_CA_Dinko_Delic.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OOP_CA_Dinko_Delic.Data
 {
@@ -16,6 +16,43 @@ namespace OOP_CA_Dinko_Delic.Data
         }
 
         public abstract T Create(T user);
+        public abstract void DisplayType(List<T> list);
+        public abstract T EditUser(string name);
+        
+
+        // Helper method that assigns name, email and phone of our person
+        // Get's called as part of Create() in our teacher/student repositories
+        public Person AssignPersonProperties(Person user)
+        {
+            Console.Clear();
+
+            Console.WriteLine("Please input user's name:");
+            user.Name = Console.ReadLine();
+
+            Console.WriteLine("Please input user's phone number:");
+            string phoneNumber = Console.ReadLine();
+
+            // Using regular expressions to check for valid phone numbers
+            while (!RegEx.CheckPhone(phoneNumber))
+            {
+                Console.WriteLine("Phone number is invalid, please input correct phone number: (XXX XXX XXXX)");
+                phoneNumber = Console.ReadLine();
+            }
+            user.Phone = phoneNumber;
+
+            Console.WriteLine("Please input user's email:");
+            string email = Console.ReadLine();
+
+            // Using regular expressions to check for valid emails
+            while (!RegEx.CheckEmail(email))
+            {
+                Console.WriteLine("Email syntax is invalid, please input correct email:");
+                email = Console.ReadLine();
+            }
+            user.Email = email;
+
+            return user;
+        }
 
         public void Delete(string id)
         {
@@ -63,7 +100,6 @@ namespace OOP_CA_Dinko_Delic.Data
                     found = true;
                 }
             }
-
             if (!found)
             {
                 Console.WriteLine("\nUser not found\n");
@@ -73,12 +109,12 @@ namespace OOP_CA_Dinko_Delic.Data
         public void AddToList(T userToCreate)
         {
             // Review and confirm the new entry or discard it
-            Console.WriteLine("\n" + userToCreate + "\n" + "\nPress y to confirm adding a user, press any other key to cancel");
+            Console.WriteLine("\n" + userToCreate  + "\nPress y to confirm adding a user, press any other key to cancel");
             string conformation = Console.ReadLine();
 
             if (conformation.ToLower() == "y")
             {
-                _data.AddPerson(userToCreate as Person);
+                _data.AddUser(userToCreate as Person);
                 Console.WriteLine("\nUser added succesfully\n");
             }
             else
@@ -87,9 +123,7 @@ namespace OOP_CA_Dinko_Delic.Data
             }
         }
 
-        public abstract void DisplayType(List<T> list);
 
-        public abstract T EditUser(string name);
 
     }
 }

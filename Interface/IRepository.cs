@@ -4,7 +4,9 @@ namespace OOP_CA_Dinko_Delic.Interface
 {
     public interface IRepository<T>
     {
-         T Create(T person);
+         T Create(T user);
+
+         Person AssignPersonProperties(Person person);
          void Delete(string id);
          void DisplayAll();
 
