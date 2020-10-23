@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace OOP_CA_Dinko_Delic
 {
-    public class DataContext
+    public class Persons
     {
         // Data class storing our list, and methods to update it
         public List<Person> userList = new List<Person>();

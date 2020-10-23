@@ -7,7 +7,7 @@ namespace OOP_CA_Dinko_Delic
 {
     public class TeacherRepository : UserRepository<Teacher>
     {
-        public TeacherRepository(DataContext data) : base(data)
+        public TeacherRepository(Persons data) : base(data)
         {
 
         }
@@ -60,7 +60,7 @@ namespace OOP_CA_Dinko_Delic
             }
             else
             {
-                Console.WriteLine("User not found.\n");
+                Console.WriteLine("Teacher not found.\n");
                 return null;
             }
             

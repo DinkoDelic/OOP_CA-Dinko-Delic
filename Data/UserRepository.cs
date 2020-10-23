@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace OOP_CA_Dinko_Delic.Data
 {
-    public abstract class UserRepository<T> : IRepository<T>
+    public abstract class UserRepository<T> : IUserRepository<T>
     {
-        public DataContext _data { get; }
+        public Persons _data { get; }
         // Injecting our data class that stores user list
-        public UserRepository(DataContext data)
+        public UserRepository(Persons data)
         {
             _data = data;
         }
@@ -22,7 +22,7 @@ namespace OOP_CA_Dinko_Delic.Data
 
         // Helper method that assigns name, email and phone of our person
         // Get's called as part of Create() in our teacher/student repositories
-        public Person AssignPersonProperties(Person user)
+        protected Person AssignPersonProperties(Person user)
         {
             Console.Clear();
 
@@ -109,7 +109,7 @@ namespace OOP_CA_Dinko_Delic.Data
         public void AddToList(T userToCreate)
         {
             // Review and confirm the new entry or discard it
-            Console.WriteLine("\n" + userToCreate  + "\nPress y to confirm adding a user, press any other key to cancel");
+            Console.WriteLine("\n" + userToCreate  + "\n\nPress y to confirm adding a user, press any other key to cancel");
             string conformation = Console.ReadLine();
 
             if (conformation.ToLower() == "y")

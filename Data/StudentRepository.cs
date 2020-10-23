@@ -7,7 +7,7 @@ namespace OOP_CA_Dinko_Delic.Data
     public class StudentRepository : UserRepository<Student>
     {
       
-        public StudentRepository(DataContext data):base(data)
+        public StudentRepository(Persons data):base(data)
         {
         }
 
@@ -18,13 +18,13 @@ namespace OOP_CA_Dinko_Delic.Data
             // Because it takes in person parameter we have to preform downcasting
             student = AssignPersonProperties(student) as Student;
 
-            Console.WriteLine("Please input student's status:\n 1 -postgrad    2 -undergrad");
+            Console.WriteLine("Please input student's status:\n 1 - postgrad    2 - undergrad");
             string status = Console.ReadLine();
 
             // Check if the input is one of two enum options
             while (status.ToLower() != "1" && status.ToLower() != "2")
             {
-                Console.WriteLine("Please input student's status:\n 1 -postgrad    2 -undergrad");
+                Console.WriteLine("Please input student's status as a number:\n 1 - postgrad    2 - undergrad");
                 status = Console.ReadLine();
             }
             if (status == "1")
@@ -94,9 +94,32 @@ namespace OOP_CA_Dinko_Delic.Data
             }
         }
 
-        public override Student EditUser(string name)
+        public override Student EditUser(string id)
         {
-            throw new NotImplementedException();
+             // Trimming the suffix at the end, e.g 103T
+            id = id.Remove(id.Length - 1);
+
+            // Finds the person in the list and downcasts it to student
+            Student studentToEdit = (_data.userList.FirstOrDefault(u => u.PublicId.ToString() == id)) as Student;
+
+            if(studentToEdit != null)
+            {
+                // Reusing Create() to assign new properties to existing object
+                Student studentToCreate = this.Create(new Student());
+                studentToEdit.Name = studentToCreate.Name;
+                studentToEdit.Email = studentToCreate.Email;
+                studentToEdit.Phone = studentToCreate.Phone;
+                studentToEdit.Status = studentToCreate.Status;
+
+                Console.WriteLine("Updated succesfully\n");
+                
+                return studentToEdit;
+            }
+            else
+            {
+                Console.WriteLine("Student not found.\n");
+                return null;
+            }
         }
     }
 }

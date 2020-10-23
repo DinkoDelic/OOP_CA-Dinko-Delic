@@ -2,11 +2,10 @@ using System.Collections.Generic;
 
 namespace OOP_CA_Dinko_Delic.Interface
 {
-    public interface IRepository<T>
+    public interface IUserRepository<T>
     {
          T Create(T user);
 
-         Person AssignPersonProperties(Person person);
          void Delete(string id);
          void DisplayAll();
 

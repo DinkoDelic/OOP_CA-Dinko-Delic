@@ -19,11 +19,11 @@ namespace OOP_CA_Dinko_Delic
             do
             {
 
-                Console.WriteLine(" 1 - List all users\n 2 - List all teachers\n 3 - List all students\n" +
-                                  " 4 - Add a teacher\n 5 - Add a student\n 6 - Remove a user\n 7 - Find a user\n" +
-                                  " 8 - Update a teacher\n 9 - Update a student\n 0 - Exit application");
+                Console.WriteLine(" 1 - List all users       4 - Add a user       7 - Edit a teacher\n\n" +
+                                  " 2 - List all teachers    5 - Remove a user    8 - Edit a student\n\n" +
+                                  " 3 - List all students    6 - Find a user      9 - Exit application");
 
-                while (!(Int32.TryParse(Console.ReadLine(), out input)) || (input < 1 || input > 8))
+                while (!(Int32.TryParse(Console.ReadLine(), out input)) || (input < 0 || input > 9))
                 {
                     Console.WriteLine("Please select from the listed options");
                 }
@@ -41,39 +41,59 @@ namespace OOP_CA_Dinko_Delic
                         studentRepo.DisplayType(new List<Student>());
                         break;
                     case 4:
-                        Teacher teacherToCreate = teacherRepo.Create(new Teacher());
+                        Console.WriteLine("Would you like to add a teacher or a student?\n 1 - Teacher   2 - Student");
+                        int choice;
+                        while (!(Int32.TryParse(Console.ReadLine(), out choice)) || (choice < 1 || choice > 2))
+                        {
+                            Console.WriteLine("Please select one of the above options");
+                        }
 
-                        teacherRepo.AddToList(teacherToCreate);
-                        break;
+                        if (choice == 1)
+                        {
+                            Teacher teacherToCreate = teacherRepo.Create(new Teacher());
+
+                            teacherRepo.AddToList(teacherToCreate);
+                            break;
+                        }
+                        else
+                        {
+                            Student studentToCreate = studentRepo.Create(new Student());
+
+                            studentRepo.AddToList(studentToCreate);
+                            break;
+                        }
                     case 5:
-                        Student studentToCreate = studentRepo.Create(new Student());
-
-                        studentRepo.AddToList(studentToCreate);
-                        break;
-                    case 6:
                         Console.WriteLine("Please type in the id of the person you wish to delete or type -1 to exit:");
                         string userToDelete = Console.ReadLine();
                         teacherRepo.Delete(userToDelete);
                         break;
-                    case 7:
+                    case 6:
                         Console.WriteLine("Please input the name of the user to find:");
                         string name = Console.ReadLine();
                         teacherRepo.FindUser(name);
                         break;
-                    case 8:
-                        Console.WriteLine("Please input the id of the user to edit:");
+                    case 7:
+                        Console.WriteLine("Please input the id of the teacher to edit:");
                         string teacherToEdit = Console.ReadLine();
                         Teacher updatedTeacher = teacherRepo.EditUser(teacherToEdit);
                         Console.WriteLine(updatedTeacher + "\n");
                         break;
-
+                    case 8:
+                        Console.WriteLine("Please input the id of the student to edit:");
+                        string studentToEdit = Console.ReadLine();
+                        Student updatedStudent = studentRepo.EditUser(studentToEdit);
+                        Console.WriteLine(updatedStudent + "\n");
+                        break;
+                    case 9:
+                        Console.WriteLine("Goodbye");
+                        break;
                     default:
                         Console.WriteLine("You pressed a key other then the one listed above.");
                         break;
                 }
 
             }
-            while (input != -1);
+            while (input != 9);
         }
     }
 }
