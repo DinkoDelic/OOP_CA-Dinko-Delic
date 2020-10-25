@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using OOP_CA_Dinko_Delic.Data;
-using OOP_CA_Dinko_Delic.Interface;
 
 namespace OOP_CA_Dinko_Delic
 {
