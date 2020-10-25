@@ -85,7 +85,7 @@ namespace OOP_CA_Dinko_Delic
                         Console.WriteLine(updatedStudent + "\n");
                         break;
                     case 9:
-                        Console.WriteLine("Goodbye");
+                        Console.WriteLine("\nGoodbye");
                         break;
                     default:
                         Console.WriteLine("You pressed a key other then the one listed above.");

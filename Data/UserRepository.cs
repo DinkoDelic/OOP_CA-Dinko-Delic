@@ -8,7 +8,7 @@ namespace OOP_CA_Dinko_Delic.Data
 {
     public abstract class UserRepository<T> : IUserRepository<T>
     {
-        public Persons _data { get; }
+        protected readonly Persons _data;
         // Injecting our data class that stores user list
         public UserRepository(Persons data)
         {
@@ -92,9 +92,11 @@ namespace OOP_CA_Dinko_Delic.Data
         public void FindUser(string name)
         {
             bool found = false;
+
+            // Returns user if it matches a portion of the name
             foreach (Person p in _data.userList)
             {
-                if (p.Name.ToLower() == name.ToLower())
+                if (p.Name.ToLower().Contains(name))
                 {
                     Console.WriteLine("\n" + p + "\n");
                     found = true;
