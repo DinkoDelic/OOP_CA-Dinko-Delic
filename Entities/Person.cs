@@ -1,6 +1,6 @@
 using System.Globalization;
 
-namespace OOP_CA_Dinko_Delic
+namespace OOP_CA_Dinko_Delic.Entities
 {
     public class Person
     {

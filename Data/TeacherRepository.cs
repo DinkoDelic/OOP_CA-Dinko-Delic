@@ -1,9 +1,9 @@
-using OOP_CA_Dinko_Delic.Data;
+using OOP_CA_Dinko_Delic.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OOP_CA_Dinko_Delic
+namespace OOP_CA_Dinko_Delic.Data
 {
     public class TeacherRepository : UserRepository<Teacher>
     {

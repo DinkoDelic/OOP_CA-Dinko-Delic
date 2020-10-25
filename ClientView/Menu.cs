@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using OOP_CA_Dinko_Delic.Data;
+using OOP_CA_Dinko_Delic.Entities;
 
-namespace OOP_CA_Dinko_Delic
+namespace OOP_CA_Dinko_Delic.ClientView
 {
     public class Menu
     {

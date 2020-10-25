@@ -1,4 +1,5 @@
-﻿using OOP_CA_Dinko_Delic.Helpers;
+﻿using OOP_CA_Dinko_Delic.Entities;
+using OOP_CA_Dinko_Delic.Helpers;
 using OOP_CA_Dinko_Delic.Interface;
 using System;
 using System.Collections.Generic;
@@ -96,7 +97,7 @@ namespace OOP_CA_Dinko_Delic.Data
             // Returns user if it matches a portion of the name
             foreach (Person p in _data.userList)
             {
-                if (p.Name.ToLower().Contains(name))
+                if (p.Name.ToLower().Contains(name.ToLower()))
                 {
                     Console.WriteLine("\n" + p + "\n");
                     found = true;

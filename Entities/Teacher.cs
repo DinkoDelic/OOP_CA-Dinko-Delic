@@ -1,6 +1,6 @@
 using System;
 
-namespace OOP_CA_Dinko_Delic
+namespace OOP_CA_Dinko_Delic.Entities
 {
     public class Teacher : Employee
     {
